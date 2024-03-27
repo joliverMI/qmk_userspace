@@ -1,6 +1,13 @@
 {
     "userspace_version": "1.0",
     "build_targets": [
-        ["pmk/posey_split/posey_split_v4", "via"]
+        ["pmk/recore/recorev3", "via"],
+        ["pmk/posey_split/posey_split_v4", "mrllama"],
+        ["pmk/posey_split/posey_split_v4", "upatree_sg"],
+        ["pmk/posey_split/posey_split_v4", "lambo"],
+        ["pmk/posey_split/posey_split_v4", "mixu_sg"],
+        ["pmk/posey_split/posey_split_v5", "elazer"],
+        ["pmk/posey_split/posey_split_v5", "harstem"],
+        ["pmk/posey_split/posey_split_v5", "reynor"]
     ]
 }

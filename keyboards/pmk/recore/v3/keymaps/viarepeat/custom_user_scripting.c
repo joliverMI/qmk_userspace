@@ -16,7 +16,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
    #endif
 
    #ifdef REPEAT_ENABLED
-   if (!process_repeat_key(keycode, record)) {
+   if (user_config.repeat_enabled && !process_repeat_key(keycode, record)) {
       return false;
    }
    #endif
@@ -26,16 +26,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       return false;
    }
    #endif
-   // switch(keycode) {
-   //    case RGB_LYR:
-   //    if (record->event.pressed) {
-   //          user_config.rgb_layer_change ^= 1; // Toggles the status
-   //          eeconfig_update_user(user_config.raw); // Writes the new status to EEPROM
-   //          if (user_config.rgb_layer_change) { // if layer state indication is enabled,
-   //              layer_state_set(layer_state);   // then immediately update the layer color
-   //          }
-   //      }
-   //    return false;
-   // }
    return true;
 };
+
+void caps_activated_script(void) {
+   rgblight_mode(RGBLIGHT_MODE_TWINKLE);
+}
+
+bool led_update_user(led_t led_state) {
+   static uint8_t caps_state = 0;
+   if (user_config.caps_flash_enabled && caps_state != led_state.caps_lock) {
+      led_state.caps_lock ? caps_activated_script() : rgblight_mode(LAYER_LIGHT_MODE);
+      caps_state = led_state.caps_lock;
+   }
+   return true;
+}

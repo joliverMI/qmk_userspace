@@ -7,10 +7,10 @@
 #define LAYER_LIGHT_MODE RGBLIGHT_MODE_STATIC_LIGHT
 #endif
 
-void keyboard_post_init_user(void) {
-  rgblight_sethsv(C_QWERTY);
-  rgblight_mode(LAYER_LIGHT_MODE);
-}
+// void keyboard_post_init_user(void) {
+//   rgblight_sethsv(C_QWERTY);
+//   rgblight_mode(LAYER_LIGHT_MODE);
+// }
 
 layer_state_t layer_state_set_user(layer_state_t state) {
    uint8_t layer = biton32(state);
