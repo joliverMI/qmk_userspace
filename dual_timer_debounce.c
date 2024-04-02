@@ -162,25 +162,6 @@ static void update_debounce_counters_and_transfer_if_expired(matrix_row_t raw[],
                 debounce_pointer->time -= elapsed_time;
                 counters_need_update = true;                    
             }
-            // if (debounce_pointer->time != DEBOUNCE_ELAPSED) {
-            //     if (debounce_pointer->time <= elapsed_time) {
-            //         debounce_pointer->time = DEBOUNCE_ELAPSED;
-
-            //         if (debounce_pointer->pressed) {
-            //             // key-down: eager
-            //             matrix_need_update = true;
-            //         } else {
-            //             // key-up: defer
-            //             matrix_row_t cooked_next = (cooked[row] & ~col_mask) | (raw[row] & col_mask);
-            //             cooked_changed |= cooked_next ^ cooked[row];
-            //             cooked[row] = cooked_next;
-            //         }
-            //     } else {
-            //         debounce_pointer->time -= elapsed_time;
-            //         dual_pointer->time -= elapsed_time;
-            //         counters_need_update = true;
-            //     }
-            // }
             debounce_pointer++;
             dual_pointer++;
         }
@@ -213,19 +194,10 @@ static void transfer_matrix_values(matrix_row_t raw[], matrix_row_t cooked[], ui
                     //Key changed, but no timer expired so reset the debounce timer
                     debounce_pointer->time = DEBOUNCE;
                 }
-                // if (debounce_pointer->time == DEBOUNCE_ELAPSED) {
-                //     debounce_pointer->pressed = (raw[row] & col_mask);
-                //     debounce_pointer->time    = debounce_pointer->pressed ? DEBOUNCE_ELAPSED : DEBOUNCE;
-                //     counters_need_update      = true;
 
-                //     if (debounce_pointer->pressed) {
-                //         // key-down: eager
-                //         cooked[row] ^= col_mask;
-                //         cooked_changed = true;
-                //     }
-                // }
             } else if (debounce_pointer->time != DEBOUNCE_ELAPSED) {
                 //The key has not changed from the cooked value and the timers havent elapsed so run this:
+                //Not sure what this is about, though
                 // debounce_pointer->time = DEBOUNCE_ELAPSED;
             }
             debounce_pointer++;
